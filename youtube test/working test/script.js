@@ -6,14 +6,13 @@ var requestOptions = {
     redirect: 'follow'
   };
 
-  var apiURL = `${API_URL}/search?key=${API_KEY}&type=video&part=snippet&q=${term}`
   var term = searchTerms[0].term
 
-  fetch(apiURL, requestOptions)
-    .then(response => response.json())
-    .then(result => loadYoutubeVideo(result))
+  fetch(`${API_URL}/search?key=${API_KEY}&type=video&part=snippet&q=${term}`, requestOptions)
+    .then(response => response.text())
+    .then(result => console.log(result))
     .catch(error => console.log('error', error));
-  
+
 // 2. This code loads the IFrame Player API code asynchronously.
 var tag = document.createElement('script');
 
